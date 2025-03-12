@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpirozzi <giovannipirozzi12345@gmail.co    +#+  +:+       +#+        */
+/*   By: gnicolo <gnicolo@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 12:45:15 by gpirozzi          #+#    #+#             */
-/*   Updated: 2025/02/12 18:03:28 by gpirozzi         ###   ########.fr       */
+/*   Created: 2025/02/18 12:54:55 by gnicolo           #+#    #+#             */
+/*   Updated: 2025/02/24 17:57:31 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_stack	*find_last(t_stack *stack)
 
 int	stack_len(t_stack *stack)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (!stack)
@@ -52,7 +52,7 @@ bool	stack_sorted(t_stack *stack)
 t_stack	*find_min(t_stack *stack)
 {
 	long			min;
-	t_stack	*min_node;
+	t_stack			*min_node;
 
 	if (!stack)
 		return (NULL);
@@ -73,7 +73,7 @@ t_stack	*find_min(t_stack *stack)
 t_stack	*find_max(t_stack *stack)
 {
 	long			max;
-	t_stack	*max_node;
+	t_stack			*max_node;
 
 	if (!stack)
 		return (NULL);

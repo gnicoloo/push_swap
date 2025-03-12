@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_detector.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpirozzi <giovannipirozzi12345@gmail.co    +#+  +:+       +#+        */
+/*   By: gnicolo <gnicolo@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 12:49:40 by gpirozzi          #+#    #+#             */
-/*   Updated: 2025/02/11 12:29:28 by gpirozzi         ###   ########.fr       */
+/*   Created: 2025/02/18 12:52:49 by gnicolo           #+#    #+#             */
+/*   Updated: 2025/02/24 18:03:15 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	error_duplicate(t_stack *a, int n)
 {
 	if (!a)
 		return (0);
-	while(a)
+	while (a)
 	{
 		if (a->nbr == n)
 			return (1);

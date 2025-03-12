@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   insertion_sort.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gpirozzi <giovannipirozzi12345@gmail.co    +#+  +:+       +#+        */
+/*													  +:+ +:+         +:+     */
+/*   By: gnicolo <gnicolo@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 12:23:14 by gpirozzi          #+#    #+#             */
-/*   Updated: 2025/02/12 11:29:14 by gpirozzi         ###   ########.fr       */
+/*   Created: 2025/02/10 12:23:14 by gnicolo           #+#    #+#             */
+/*   Updated: 2025/02/23 14:54:14 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	insertion_sort(t_stack **a, t_stack **b)
 {
 	t_stack	*min;
+	int		tot_size;
+	t_stack	*max;
 
+	tot_size = stack_len(*a);
 	while (stack_len(*a) > 3)
 	{
 		min = find_min(*a);
@@ -23,6 +26,14 @@ void	insertion_sort(t_stack **a, t_stack **b)
 		pb(a, b);
 	}
 	sort_three(a);
-	while(*b)
+	while (stack_len(*a) != tot_size)
 		pa(a, b);
+	while (*b)
+	{
+		max = find_max(*b);
+		move_to_top_b(b, max);
+		pa(a, b);
+	}
+	free_stack(b);
+	free_stack(a);
 }

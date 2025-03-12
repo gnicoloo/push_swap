@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpirozzi <giovannipirozzi12345@gmail.co    +#+  +:+       +#+        */
+/*   By: gnicolo <gnicolo@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 11:57:02 by gpirozzi          #+#    #+#             */
-/*   Updated: 2025/02/12 11:46:15 by gpirozzi         ###   ########.fr       */
+/*   Created: 2025/02/18 12:53:56 by gnicolo           #+#    #+#             */
+/*   Updated: 2025/02/24 18:01:45 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

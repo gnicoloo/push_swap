@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpirozzi <giovannipirozzi12345@gmail.co    +#+  +:+       +#+        */
+/*   By: gnicolo <gnicolo@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 14:29:57 by gpirozzi          #+#    #+#             */
-/*   Updated: 2025/02/10 12:16:03 by gpirozzi         ###   ########.fr       */
+/*   Created: 2025/02/07 14:29:57 by gnicolo           #+#    #+#             */
+/*   Updated: 2025/02/24 17:58:20 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	swap(t_stack **head)
 {
+	t_stack	*first;
+	t_stack	*second;
+
 	if (!(*head) || !(*head)->next)
 		return ;
-	t_stack *first;
-	t_stack *second;
-
 	first = (*head);
 	second = (*head)->next;
 	first->next = second->next;
@@ -42,7 +42,7 @@ void	sb(t_stack **b)
 	ft_printf("sb\n");
 }
 
-void	ss(t_stack **a,t_stack **b)
+void	ss(t_stack **a, t_stack **b)
 {
 	if (!a || !b)
 		return ;

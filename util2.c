@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   util2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpirozzi <giovannipirozzi12345@gmail.co    +#+  +:+       +#+        */
+/*   By: gnicolo <gnicolo@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 14:19:53 by gpirozzi          #+#    #+#             */
-/*   Updated: 2025/02/12 11:51:07 by gpirozzi         ###   ########.fr       */
+/*   Created: 2025/02/07 14:19:53 by gnicolo           #+#    #+#             */
+/*   Updated: 2025/02/24 17:57:06 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 int	find_index(t_stack *stack, t_stack *node)
 {
 	int	index;
 
 	index = 0;
-	while(stack)
+	while (stack)
 	{
 		if (stack->nbr == node->nbr)
 			return (index);
@@ -49,7 +50,30 @@ void	move_to_top(t_stack **a, t_stack *node)
 	}
 }
 
-void sort_three(t_stack **a)
+void	move_to_top_b(t_stack **a, t_stack *node)
+{
+	int	index;
+	int	size;
+
+	size = stack_len(*a);
+	index = find_index(*a, node);
+	if (index == -1)
+		return ;
+	if (index == 0)
+		return ;
+	if (index <= size / 2)
+	{
+		while ((*a) != node)
+			rb(a);
+	}
+	else
+	{
+		while ((*a) != node)
+			rrb(a);
+	}
+}
+
+void	sort_three(t_stack **a)
 {
 	t_stack	*biggest;
 	t_stack	*min;

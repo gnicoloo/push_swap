@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpirozzi <giovannipirozzi12345@gmail.co    +#+  +:+       +#+        */
+/*   By: gnicolo <gnicolo@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 11:41:46 by gpirozzi          #+#    #+#             */
-/*   Updated: 2025/02/13 10:49:55 by gpirozzi         ###   ########.fr       */
+/*   Created: 2025/02/07 11:41:46 by gnicolo           #+#    #+#             */
+/*   Updated: 2025/02/28 16:00:36 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	append_node(t_stack **stack, int n)
 
 	if (!stack)
 		return ;
-	node = malloc(sizeof(t_stack));
+	node = ft_calloc(sizeof(t_stack), 1);
 	if (!node)
 		return ;
 	node->next = NULL;
@@ -32,7 +32,32 @@ static void	append_node(t_stack **stack, int n)
 		last_node->next = node;
 	}
 }
-void	init_stack_a(t_stack **a, char **argv)
+
+void	ft_clean_mat(char **mat)
+{
+	int	i;
+
+	i = 0;
+	while (mat[i])
+	{
+		free(mat[i]);
+		i++;
+	}
+	free(mat);
+}
+
+void	ft_union(t_stack **a, char **mat, int i)
+{
+	if (i == 1)
+		free_errors(a);
+	else
+	{
+		ft_clean_mat(mat);
+		free_errors(a);
+	}
+}
+
+void	init_stack_a(t_stack **a, char **argv, int flags)
 {
 	long	n;
 	int		i;
@@ -41,12 +66,12 @@ void	init_stack_a(t_stack **a, char **argv)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			free_errors(a);
+			ft_union(a, argv, flags);
 		n = ft_atoi(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free_errors(a);
+			ft_union(a, argv, flags);
 		if (error_duplicate((*a), (int)n))
-			free_errors(a);
+			ft_union(a, argv, flags);
 		append_node(a, (int)n);
 		i++;
 	}

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   index_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpirozzi <giovannipirozzi12345@gmail.co    +#+  +:+       +#+        */
+/*   By: gnicolo <gnicolo@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 18:06:20 by gpirozzi          #+#    #+#             */
-/*   Updated: 2025/02/13 11:11:57 by gpirozzi         ###   ########.fr       */
+/*   Created: 2025/02/12 18:06:20 by gnicolo           #+#    #+#             */
+/*   Updated: 2025/02/24 18:02:47 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void swap(int *a, int *b)
+void	swap(int *a, int *b)
 {
-	int temp;
+	int	temp;
 
 	temp = *a;
 	*a = *b;
@@ -50,19 +50,18 @@ void	ft_index_list(t_stack **a, t_stack **tmp)
 	i = 0;
 	while (head_a && head_tmp)
 	{
-			if (head_a->nbr == head_tmp->nbr)
-			{
-				head_a->index = i;
-				i = 0;
-				head_tmp = (*tmp);
-				head_a = head_a->next;
-			}
-			else
-			{
-				i++;
-				head_tmp = head_tmp->next;
-			}
+		if (head_a->nbr == head_tmp->nbr)
+		{
+			head_a->index = i;
+			i = 0;
+			head_tmp = (*tmp);
+			head_a = head_a->next;
+		}
+		else
+		{
+			i++;
+			head_tmp = head_tmp->next;
+		}
 	}
-	print_stack(*a);
 	free_stack(tmp);
 }
