@@ -1,0 +1,117 @@
+name: Push Swap CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc make valgrind
+    
+    - name: Compile project
+      run: make
+    
+    - name: Check for compilation errors
+      run: |
+        if [ ! -f "./push_swap" ]; then
+          echo "❌ Compilation failed: push_swap executable not found"
+          exit 1
+        fi
+        echo "✅ Compilation successful"
+    
+    - name: Test with 3 numbers
+      run: |
+        RESULT=$(./push_swap 3 2 1 | wc -l)
+        if [ $RESULT -le 3 ]; then
+          echo "✅ Test 3 numbers: PASS ($RESULT moves)"
+        else
+          echo "❌ Test 3 numbers: FAIL ($RESULT moves > 3)"
+          exit 1
+        fi
+    
+    - name: Test with 5 numbers
+      run: |
+        RESULT=$(./push_swap 5 4 3 2 1 | wc -l)
+        if [ $RESULT -le 12 ]; then
+          echo "✅ Test 5 numbers: PASS ($RESULT moves)"
+        else
+          echo "❌ Test 5 numbers: FAIL ($RESULT moves > 12)"
+          exit 1
+        fi
+    
+    - name: Test with 100 numbers
+      run: |
+        ARG=$(seq 1 100 | shuf | tr '\n' ' ')
+        RESULT=$(./push_swap $ARG | wc -l)
+        if [ $RESULT -lt 700 ]; then
+          echo "✅ Test 100 numbers: PASS ($RESULT moves)"
+        else
+          echo "⚠️  Test 100 numbers: WARNING ($RESULT moves >= 700)"
+        fi
+    
+    - name: Test error handling
+      run: |
+        # Test non-numeric
+        if ./push_swap 1 2 abc 2>&1 | grep -q "Error"; then
+          echo "✅ Error handling (non-numeric): PASS"
+        else
+          echo "❌ Error handling (non-numeric): FAIL"
+          exit 1
+        fi
+        
+        # Test duplicates
+        if ./push_swap 1 2 2 3 2>&1 | grep -q "Error"; then
+          echo "✅ Error handling (duplicates): PASS"
+        else
+          echo "❌ Error handling (duplicates): FAIL"
+          exit 1
+        fi
+    
+    - name: Check memory leaks (small test)
+      run: |
+        valgrind --leak-check=full --error-exitcode=1 --quiet \
+          ./push_swap 4 67 3 87 23 > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+          echo "✅ No memory leaks detected"
+        else
+          echo "❌ Memory leaks detected"
+          exit 1
+        fi
+    
+    - name: Clean build
+      run: make fclean
+
+  norminette:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Install Norminette
+      run: |
+        python3 -m pip install --upgrade pip setuptools
+        python3 -m pip install norminette
+    
+    - name: Run Norminette
+      run: |
+        norminette src/ include/
+        if [ $? -eq 0 ]; then
+          echo "✅ Norminette: PASS"
+        else
+          echo "❌ Norminette: FAIL"
+          exit 1
+        fi

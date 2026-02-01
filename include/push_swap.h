@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gnicolo <gnicolo@student.42firenze.it>     +#+  +:+       +#+        */
+/*   By: gnicolo <gnicolo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:08:31 by gnicolo           #+#    #+#             */
-/*   Updated: 2025/02/28 13:33:50 by gnicolo          ###   ########.fr       */
+/*   Updated: 2026/02/01 15:44:58 by gnicolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 # include <limits.h>
-# include "./libft/libft.h"
+# include "libft.h"
 
 //for errors
 int				error_syntax(char *str);

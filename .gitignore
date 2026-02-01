@@ -1,2 +1,27 @@
+# Executable
+push_swap
+checker
 
-libft/
+# Object files
+*.o
+*.a
+
+# Dependencies
+*.d
+
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test files
+test_results.txt
+*.log
+
+# Debug files
+*.dSYM/
+vgcore.*
