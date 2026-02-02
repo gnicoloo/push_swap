@@ -15,7 +15,7 @@ NAME = libft.a
 LIBC = ar rcs
 CC = cc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fPIC -g
 
 # Aggiungi @ per nascondere il comando di compilazione
 .c.o:
